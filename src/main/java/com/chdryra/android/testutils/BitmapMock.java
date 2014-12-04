@@ -21,7 +21,7 @@ import java.io.IOException;
  * On: 20/11/2014
  * Email: rizwan.choudrey@gmail.com
  */
-public class BitmapMocker extends TestCase {
+public class BitmapMock extends TestCase {
     public static final  int    WIDTH    = 300;
     public static final  int    HEIGHT   = 400;
     private static final String FILENAME = "test";
@@ -29,7 +29,7 @@ public class BitmapMocker extends TestCase {
     private File   mFile;
     private Bitmap mBitmap;
 
-    public BitmapMocker(File filesDir) {
+    public BitmapMock(File filesDir) {
         mFilesDir = filesDir;
     }
 
