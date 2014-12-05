@@ -24,7 +24,7 @@ import java.io.IOException;
 public class BitmapMock extends TestCase {
     public static final  int    WIDTH    = 300;
     public static final  int    HEIGHT   = 400;
-    private static final String FILENAME = "bitmap";
+    private static final String FILENAME = "bitmapmock";
     private File   mFilesDir;
     private File   mFile;
     private Bitmap mBitmap;
