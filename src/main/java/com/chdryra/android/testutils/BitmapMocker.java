@@ -25,16 +25,16 @@ public class BitmapMocker extends TestCase {
     public static final  int    WIDTH    = 300;
     public static final  int    HEIGHT   = 400;
     private static final String FILENAME = "bitmapmock";
-    private File   mFilesDir;
-    private File   mFile;
-    private Bitmap mBitmap;
+    private static Bitmap sBitmap;
+    private        File   mFilesDir;
+    private        File   mFile;
 
     public BitmapMocker(File filesDir) {
         mFilesDir = filesDir;
     }
 
-    public Bitmap getBitmap() {
-        return mBitmap;
+    public static Bitmap getBitmap() {
+        return sBitmap;
     }
 
     public String createBitmapFile() {
@@ -47,7 +47,7 @@ public class BitmapMocker extends TestCase {
 
     public String createBitmapFile(Bitmap.CompressFormat format, boolean landscape) {
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-        mBitmap = landscape ? Bitmap.createBitmap(HEIGHT, WIDTH, conf) : Bitmap.createBitmap(WIDTH,
+        sBitmap = landscape ? Bitmap.createBitmap(HEIGHT, WIDTH, conf) : Bitmap.createBitmap(WIDTH,
                 HEIGHT, conf);
 
         mFile = new File(mFilesDir, FILENAME + "." + format.toString());
@@ -63,7 +63,7 @@ public class BitmapMocker extends TestCase {
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(mFile);
-            mBitmap.compress(format, 100, out);
+            sBitmap.compress(format, 100, out);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
