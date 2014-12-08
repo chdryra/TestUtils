@@ -33,7 +33,13 @@ public class BitmapMocker extends TestCase {
         mFilesDir = filesDir;
     }
 
-    public static Bitmap getBitmap() {
+    public static Bitmap getBitmap(boolean landscape) {
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        return landscape ? Bitmap.createBitmap(HEIGHT, WIDTH, conf) : Bitmap.createBitmap(WIDTH,
+                HEIGHT, conf);
+    }
+
+    public Bitmap getBitmap() {
         return sBitmap;
     }
 
@@ -46,9 +52,7 @@ public class BitmapMocker extends TestCase {
     }
 
     public String createBitmapFile(Bitmap.CompressFormat format, boolean landscape) {
-        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-        sBitmap = landscape ? Bitmap.createBitmap(HEIGHT, WIDTH, conf) : Bitmap.createBitmap(WIDTH,
-                HEIGHT, conf);
+        sBitmap = getBitmap(landscape);
 
         mFile = new File(mFilesDir, FILENAME + "." + format.toString());
         if (mFile.exists()) deleteBitmapFile();
