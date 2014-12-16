@@ -10,7 +10,7 @@ package com.chdryra.android.testutils;
 
 import android.graphics.Bitmap;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,30 +21,20 @@ import java.io.IOException;
  * On: 20/11/2014
  * Email: rizwan.choudrey@gmail.com
  */
-public class BitmapFileMocker extends TestCase {
-    public static final  int    WIDTH    = 300;
-    public static final  int    HEIGHT   = 400;
+public class BitmapFileMocker {
+    public static final  int    WIDTH    = 400;
+    public static final  int    HEIGHT   = 300;
     private static final String FILENAME = "bitmapmock";
-    private static Bitmap sBitmap;
-    private        File   mFilesDir;
-    private        File   mFile;
+    private Bitmap mBitmap;
+    private File   mFilesDir;
+    private File   mFile;
 
     public BitmapFileMocker(File filesDir) {
         mFilesDir = filesDir;
     }
 
-    public static Bitmap getBitmap(boolean landscape) {
-        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-        return landscape ? Bitmap.createBitmap(HEIGHT, WIDTH, conf) : Bitmap.createBitmap(WIDTH,
-                HEIGHT, conf);
-    }
-
     public Bitmap getBitmap() {
-        return sBitmap;
-    }
-
-    public String createBitmapFile() {
-        return createBitmapFile(false);
+        return mBitmap;
     }
 
     public String createBitmapFile(boolean landscape) {
@@ -52,22 +42,24 @@ public class BitmapFileMocker extends TestCase {
     }
 
     public String createBitmapFile(Bitmap.CompressFormat format, boolean landscape) {
-        sBitmap = getBitmap(landscape);
+        int width = landscape ? WIDTH : HEIGHT;
+        int height = landscape ? HEIGHT : WIDTH;
+        mBitmap = BitmapMocker.nextBitmap(width, height);
 
         mFile = new File(mFilesDir, FILENAME + "." + format.toString());
         if (mFile.exists()) deleteBitmapFile();
         try {
-            assertTrue(mFile.createNewFile());
+            Assert.assertTrue(mFile.createNewFile());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        assertTrue(mFile.exists());
+        Assert.assertTrue(mFile.exists());
 
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(mFile);
-            sBitmap.compress(format, 100, out);
+            mBitmap.compress(format, 100, out);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -85,11 +77,5 @@ public class BitmapFileMocker extends TestCase {
 
     public boolean deleteBitmapFile() {
         return mFile.exists() && mFile.delete();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        deleteBitmapFile();
-        super.tearDown();
     }
 }
