@@ -32,8 +32,8 @@ public class BitmapMocker {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bitmap);
         String text = RandomStringGenerator.nextWord();
-        float x = rand.nextFloat() * width;
-        float y = rand.nextFloat() * height;
+        float x = width / 2;
+        float y = height / 2;
 
         c.drawText(text, x, y, new Paint());
 
