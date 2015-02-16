@@ -12,17 +12,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import java.util.Random;
-
 /**
  * Created by: Rizwan Choudrey
  * On: 16/12/2014
  * Email: rizwan.choudrey@gmail.com
  */
 public class BitmapMocker {
-    private static final int    WIDTH  = 400;
-    private static final int    HEIGHT = 300;
-    private static final Random rand   = new Random();
+    private static final int WIDTH  = 400;
+    private static final int HEIGHT = 300;
 
     public static Bitmap nextBitmap(boolean landscape) {
         return landscape ? nextBitmap(WIDTH, HEIGHT) : nextBitmap(HEIGHT, WIDTH);
