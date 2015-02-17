@@ -17,7 +17,7 @@ import java.util.Random;
  * On: 03/12/2014
  * Email: rizwan.choudrey@gmail.com
  */
-public class RandomStringGenerator {
+public class RandomString {
     private static final int MIN = 3;
     private static final int MAX = 8;
 

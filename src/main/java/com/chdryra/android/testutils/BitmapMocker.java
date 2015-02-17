@@ -18,8 +18,8 @@ import android.graphics.Paint;
  * Email: rizwan.choudrey@gmail.com
  */
 public class BitmapMocker {
-    private static final int WIDTH  = 400;
-    private static final int HEIGHT = 300;
+    private static final int WIDTH  = 40;
+    private static final int HEIGHT = 30;
 
     public static Bitmap nextBitmap(boolean landscape) {
         return landscape ? nextBitmap(WIDTH, HEIGHT) : nextBitmap(HEIGHT, WIDTH);
@@ -28,7 +28,7 @@ public class BitmapMocker {
     public static Bitmap nextBitmap(int width, int height) {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bitmap);
-        String text = RandomStringGenerator.nextWord();
+        String text = RandomString.nextWord();
         float x = width / 2;
         float y = height / 2;
 

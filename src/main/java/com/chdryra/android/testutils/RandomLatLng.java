@@ -17,10 +17,10 @@ import java.util.Random;
  * On: 04/12/2014
  * Email: rizwan.choudrey@gmail.com
  */
-public class LatLngMocker {
+public class RandomLatLng {
     private static final Random RAND = new Random();
 
-    public static LatLng newLatLng() {
+    public static LatLng nextLatLng() {
         return new LatLng((RAND.nextDouble() - 0.5) * 180, (RAND.nextDouble() - 0.5) * 360);
     }
 }
