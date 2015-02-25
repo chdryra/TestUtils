@@ -22,8 +22,8 @@ import java.io.IOException;
  * Email: rizwan.choudrey@gmail.com
  */
 public class BitmapFileMocker {
-    public static final  int    WIDTH    = 400;
-    public static final  int    HEIGHT   = 300;
+    public static final int WIDTH  = 40;
+    public static final int HEIGHT = 30;
     private static final String FILENAME = "bitmapmock";
     private Bitmap mBitmap;
     private File   mFilesDir;
