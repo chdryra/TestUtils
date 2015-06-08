@@ -21,6 +21,10 @@ public class BitmapMocker {
     private static final int WIDTH  = 40;
     private static final int HEIGHT = 30;
 
+    public static Bitmap nextBitmap() {
+        return nextBitmap(true);
+    }
+
     public static Bitmap nextBitmap(boolean landscape) {
         return landscape ? nextBitmap(WIDTH, HEIGHT) : nextBitmap(HEIGHT, WIDTH);
     }
