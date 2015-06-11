@@ -19,6 +19,10 @@ import java.lang.reflect.Method;
  * Email: rizwan.choudrey@gmail.com
  */
 public class ExceptionTester {
+    private ExceptionTester() {
+    }
+
+    ;
 
     public static void test(Object obj, String methodName, Class<? extends Exception> expected,
             String exceptionMessage) {
