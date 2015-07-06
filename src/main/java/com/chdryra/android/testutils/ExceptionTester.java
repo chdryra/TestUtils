@@ -22,13 +22,30 @@ public class ExceptionTester {
     private ExceptionTester() {
     }
 
-    ;
-
     public static void test(Object obj, String methodName, Class<? extends Exception> expected,
             String exceptionMessage) {
+        Method method = getMethod(obj, methodName, null);
+        invokeMethod(obj, method, null, expected, exceptionMessage);
+    }
+
+    public static void test(Object obj, String methodName, Object[] params, Class<? extends
+            Exception> expected, String exceptionMessage) {
+        Method method = getMethod(obj, methodName, params);
+        invokeMethod(obj, method, params, expected, exceptionMessage);
+    }
+
+    private static Method getMethod(Object obj, String methodName, Object[] params) {
         Method method = null;
         try {
-            method = obj.getClass().getMethod(methodName);
+            if (params == null) {
+                method = obj.getClass().getMethod(methodName);
+            } else {
+                Class[] paramClasses = new Class[params.length];
+                for (int i = 0; i < params.length; ++i) {
+                    paramClasses[i] = params[i].getClass();
+                }
+                method = obj.getClass().getMethod(methodName, paramClasses);
+            }
         } catch (SecurityException e) {
             e.printStackTrace();
             Assert.fail("SecurityException");
@@ -37,9 +54,18 @@ public class ExceptionTester {
             Assert.fail("NoSuchMethodException");
         }
 
+        return method;
+    }
+
+    private static void invokeMethod(Object obj, Method method, Object[] params, Class<? extends
+            Exception> expected, String exceptionMessage) {
         try {
             if (method != null) {
-                method.invoke(obj);
+                if (params == null) {
+                    method.invoke(obj);
+                } else {
+                    method.invoke(obj, params);
+                }
             }
             Assert.fail(expected.toString() + " expected");
         } catch (InvocationTargetException e) {
