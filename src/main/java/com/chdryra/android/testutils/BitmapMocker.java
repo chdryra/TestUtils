@@ -3,89 +3,41 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  * Author: Rizwan Choudrey
- * Date: 20 November, 2014
+ * Date: 16 December, 2014
  */
 
 package com.chdryra.android.testutils;
 
 import android.graphics.Bitmap;
-
-import junit.framework.TestCase;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 
 /**
  * Created by: Rizwan Choudrey
- * On: 20/11/2014
+ * On: 16/12/2014
  * Email: rizwan.choudrey@gmail.com
  */
-public class BitmapMocker extends TestCase {
-    public static final  int    WIDTH    = 300;
-    public static final  int    HEIGHT   = 400;
-    private static final String FILENAME = "bitmapmock";
-    private File   mFilesDir;
-    private File   mFile;
-    private Bitmap mBitmap;
+public class BitmapMocker {
+    private static final int WIDTH = 40;
+    private static final int HEIGHT = 31;
 
-    public BitmapMocker(File filesDir) {
-        mFilesDir = filesDir;
+    public static Bitmap nextBitmap() {
+        return nextBitmap(true);
     }
 
-    public Bitmap getBitmap() {
-        return mBitmap;
+    public static Bitmap nextBitmap(boolean landscape) {
+        return landscape ? nextBitmap(WIDTH, HEIGHT) : nextBitmap(HEIGHT, WIDTH);
     }
 
-    public String createBitmapFile() {
-        return createBitmapFile(false);
-    }
+    public static Bitmap nextBitmap(int width, int height) {
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bitmap);
+        String text = RandomString.nextWord();
+        float x = width / 2;
+        float y = height / 2;
 
-    public String createBitmapFile(boolean landscape) {
-        return createBitmapFile(Bitmap.CompressFormat.PNG, landscape);
-    }
+        c.drawText(text, x, y, new Paint());
 
-    public String createBitmapFile(Bitmap.CompressFormat format, boolean landscape) {
-        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-        mBitmap = landscape ? Bitmap.createBitmap(HEIGHT, WIDTH, conf) : Bitmap.createBitmap(WIDTH,
-                HEIGHT, conf);
-
-        mFile = new File(mFilesDir, FILENAME + "." + format.toString());
-        if (mFile.exists()) deleteBitmapFile();
-        try {
-            assertTrue(mFile.createNewFile());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assertTrue(mFile.exists());
-
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(mFile);
-            mBitmap.compress(format, 100, out);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return mFile.getPath();
-    }
-
-    public boolean deleteBitmapFile() {
-        return mFile.exists() && mFile.delete();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        deleteBitmapFile();
-        super.tearDown();
+        return bitmap;
     }
 }
