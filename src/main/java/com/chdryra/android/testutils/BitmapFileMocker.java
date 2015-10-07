@@ -29,10 +29,12 @@ public class BitmapFileMocker {
     private File mFilesDir;
     private File mFile;
 
+    //Constructors
     public BitmapFileMocker(File filesDir) {
         mFilesDir = filesDir;
     }
 
+    //public methods
     public Bitmap getBitmap() {
         return mBitmap;
     }

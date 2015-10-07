@@ -24,9 +24,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class CallBackSignaler {
     private CountDownLatch mSignal;
-    private long           mTimeOut;
+    private long mTimeOut;
     private boolean mTimedOut = false;
 
+    //Constructors
     public CallBackSignaler(long timeOutSeconds) {
         mSignal = new CountDownLatch(1);
         mTimeOut = timeOutSeconds;

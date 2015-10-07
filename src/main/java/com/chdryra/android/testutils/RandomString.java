@@ -25,6 +25,7 @@ public class RandomString {
     private static Random mRand = new Random();
     private String[] mSentences;
 
+    //Static methods
     public static String nextSentence() {
         String sentence = "";
         int numWords = randomLength();
@@ -43,6 +44,11 @@ public class RandomString {
         return MIN + mRand.nextInt(MAX - MIN);
     }
 
+    //public methods
+    public String[] getSentencesForParagraph() {
+        return mSentences;
+    }
+
     public String nextParagraph() {
         String comment = "";
         int numSentences = randomLength();
@@ -54,10 +60,6 @@ public class RandomString {
         }
 
         return comment.trim();
-    }
-
-    public String[] getSentencesForParagraph() {
-        return mSentences;
     }
 
     private char randomDelimiter() {

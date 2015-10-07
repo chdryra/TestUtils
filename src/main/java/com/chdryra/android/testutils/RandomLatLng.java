@@ -20,6 +20,7 @@ import java.util.Random;
 public class RandomLatLng {
     private static final Random RAND = new Random();
 
+    //Static methods
     public static LatLng nextLatLng() {
         return new LatLng((RAND.nextDouble() - 0.5) * 180, (RAND.nextDouble() - 0.5) * 360);
     }

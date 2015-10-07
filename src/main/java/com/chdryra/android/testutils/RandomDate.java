@@ -20,6 +20,7 @@ import java.util.Random;
 public class RandomDate {
     private static final Random RAND = new Random();
 
+    //Static methods
     public static Date nextDate() {
         int year = 1900 + RAND.nextInt(114);
         int dayOfYear = 1 + RAND.nextInt(364);

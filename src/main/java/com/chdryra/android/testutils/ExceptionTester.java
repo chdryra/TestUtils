@@ -22,8 +22,9 @@ public class ExceptionTester {
     private ExceptionTester() {
     }
 
+    //Static methods
     public static void test(Object obj, String methodName, Class<? extends Exception> expected,
-            String exceptionMessage) {
+                            String exceptionMessage) {
         Method method = getMethod(obj, methodName, null);
         invokeMethod(obj, method, null, expected, exceptionMessage);
     }
