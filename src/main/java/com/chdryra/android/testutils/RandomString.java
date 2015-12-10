@@ -37,7 +37,11 @@ public class RandomString {
     }
 
     public static String nextWord() {
-        return RandomStringUtils.randomAlphanumeric(randomLength());
+        return RandomStringUtils.randomAlphabetic(randomLength());
+    }
+
+    public static String nextWordLowerCase() {
+        return nextWord().toLowerCase();
     }
 
     private static int randomLength() {
