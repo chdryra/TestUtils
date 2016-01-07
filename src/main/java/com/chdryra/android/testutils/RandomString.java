@@ -8,6 +8,8 @@
 
 package com.chdryra.android.testutils;
 
+import android.support.annotation.NonNull;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Random;
@@ -42,6 +44,19 @@ public class RandomString {
 
     public static String nextWordLowerCase() {
         return nextWord().toLowerCase();
+    }
+
+
+    @NonNull
+    public static String toRandomCase(String stringPre) {
+        String string = stringPre;
+        int upperLower = mRand.nextInt(3);
+        if (upperLower == 0) {
+            string = stringPre.toUpperCase();
+        } else if (upperLower == 1) {
+            string = stringPre.toLowerCase();
+        }
+        return string;
     }
 
     private static int randomLength() {
