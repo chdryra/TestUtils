@@ -22,7 +22,7 @@ public class RandomDate {
 
     //Static methods
     public static Date nextDate() {
-        int year = 1900 + RAND.nextInt(115);
+        int year = 1976 + RAND.nextInt(40);
         int dayOfYear = 1 + RAND.nextInt(364);
 
         Calendar calendar = Calendar.getInstance();
