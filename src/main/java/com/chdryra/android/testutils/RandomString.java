@@ -12,6 +12,8 @@ import android.support.annotation.NonNull;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -40,6 +42,15 @@ public class RandomString {
 
     public static String nextWord() {
         return RandomStringUtils.randomAlphabetic(randomLength());
+    }
+
+    public static List<String> nextWordArray(int num) {
+        ArrayList<String> words = new ArrayList<>();
+        for(int i = 0; i < num; ++i) {
+            words.add(nextWord());
+        }
+
+        return words;
     }
 
     public static String nextWordLowerCase() {
