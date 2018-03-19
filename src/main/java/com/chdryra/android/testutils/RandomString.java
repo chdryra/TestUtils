@@ -46,7 +46,7 @@ public class RandomString {
 
     public static List<String> nextWordArray(int num) {
         ArrayList<String> words = new ArrayList<>();
-        for(int i = 0; i < num; ++i) {
+        for (int i = 0; i < num; ++i) {
             words.add(nextWord());
         }
 
